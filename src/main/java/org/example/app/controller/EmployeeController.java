@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-// * має бути в /api/v1/users/*
+// * має бути в /api/v1/employees/*
 // для отримання ресурсу за певним id
 @WebServlet("/api/v1/employees/*")
 public class EmployeeController extends HttpServlet {

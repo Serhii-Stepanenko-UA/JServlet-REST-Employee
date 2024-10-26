@@ -1,0 +1,190 @@
+@startuml
+class org.example.app.controller.EmployeeController {
+- EmployeeService service
+- ObjectMapper objectMapper
+- {static} String CONTENT_TYPE
++ void init(ServletConfig)
+# void doPost(HttpServletRequest,HttpServletResponse)
+# void doGet(HttpServletRequest,HttpServletResponse)
+# void doPut(HttpServletRequest,HttpServletResponse)
+# void doDelete(HttpServletRequest,HttpServletResponse)
+}
+
+
+class org.example.app.dto.employee.EmployeeDtoGetListResponse {
+- int statusCode
+- boolean success
+- String message
+- List<Employee> employeeList
++ {static} String SUCCESS_MESSAGE
++ {static} String FAILURE_MESSAGE
++ {static} EmployeeDtoGetListResponse of(boolean,List<Employee>)
++ String message()
++ int statusCode()
++ boolean success()
++ List<Employee> employeeList()
+}
+
+
+class org.example.app.config.HibernateUtil {
+- {static} Logger LOGGER
+- {static} SessionFactory sessionFactory
++ {static} SessionFactory getSessionFactory()
+- {static} Configuration getConfiguration()
+}
+
+
+class org.example.app.service.employee.EmployeeServiceImpl {
+- EmployeeRepository repository
++ Employee create(EmployeeDtoRequest)
++ List<Employee> getAll()
++ Employee getById(Long)
++ Employee update(Long,EmployeeDtoRequest)
++ boolean deleteById(Long)
+}
+
+
+class org.example.app.dto.employee.EmployeeDtoCreateResponse {
+- int statusCode
+- boolean success
+- String message
+- Employee employee
++ {static} String SUCCESS_MESSAGE
++ {static} String FAILURE_MESSAGE
++ {static} EmployeeDtoCreateResponse of(boolean,Employee)
++ String message()
++ Employee employee()
++ int statusCode()
++ boolean success()
+}
+
+
+interface org.example.app.repository.employee.EmployeeRepository {
+~ void save(EmployeeDtoRequest)
+~ Optional<List<Employee>> getAll()
+~ Optional<Employee> getById(Long)
+~ void update(Long,EmployeeDtoRequest)
+~ boolean deleteById(Long)
+~ Optional<Employee> getLastEntity()
+}
+
+class org.example.app.dto.employee.EmployeeDtoGetByIdResponse {
+- int statusCode
+- boolean success
+- String message
+- Employee employee
++ {static} String SUCCESS_MESSAGE
++ {static} String FAILURE_MESSAGE
++ {static} EmployeeDtoGetByIdResponse of(Long,boolean,Employee)
++ String message()
++ Employee employee()
++ int statusCode()
++ boolean success()
+}
+
+
+class org.example.app.dto.employee.EmployeeDtoDeleteResponse {
+- int statusCode
+- boolean success
+- String message
++ {static} String SUCCESS_MESSAGE
++ {static} String FAILURE_MESSAGE
++ {static} EmployeeDtoDeleteResponse of(Long,boolean)
++ String message()
++ int statusCode()
++ boolean success()
+}
+
+
+interface org.example.app.service.employee.EmployeeService {
+~ Employee create(EmployeeDtoRequest)
+~ List<Employee> getAll()
+~ Employee getById(Long)
+~ Employee update(Long,EmployeeDtoRequest)
+~ boolean deleteById(Long)
+}
+
+class org.example.app.dto.employee.EmployeeDtoUpdateResponse {
+- int statusCode
+- boolean success
+- String message
+- Employee employee
++ {static} String SUCCESS_MESSAGE
++ {static} String FAILURE_MESSAGE
++ {static} EmployeeDtoUpdateResponse of(Long,boolean,Employee)
++ String message()
++ Employee employee()
++ int statusCode()
++ boolean success()
+}
+
+
+interface org.example.app.repository.BaseRepository {
+~ void save(S)
+~ Optional<List<T>> getAll()
+~ Optional<T> getById(Long)
+~ void update(Long,S)
+~ boolean deleteById(Long)
+}
+
+interface org.example.app.service.BaseService {
+~ T create(S)
+~ List<T> getAll()
+~ T getById(Long)
+~ T update(Long,S)
+~ boolean deleteById(Long)
+}
+
+class org.example.app.entity.Employee {
+- Long id
+- String firstName
+- String lastName
+- String jobPosition
+- String phone
++ Long getId()
++ void setId(Long)
++ String getFirstName()
++ void setFirstName(String)
++ String getLastName()
++ void setLastName(String)
++ String getJobPosition()
++ void setJobPosition(String)
++ String getPhone()
++ void setPhone(String)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+}
+
+
+class org.example.app.dto.employee.EmployeeDtoRequest {
+- Long id
+- String firstName
+- String lastName
+- String jobPosition
+- String phone
++ String lastName()
++ String firstName()
++ String phone()
++ String jobPosition()
++ Long id()
+}
+
+
+class org.example.app.repository.employee.EmployeeRepositoryImpl {
++ void save(EmployeeDtoRequest)
++ Optional<List<Employee>> getAll()
++ Optional<Employee> getById(Long)
++ void update(Long,EmployeeDtoRequest)
++ boolean deleteById(Long)
++ Optional<Employee> getLastEntity()
+}
+
+
+
+jakarta.servlet.http.HttpServlet <|-- org.example.app.controller.EmployeeController
+org.example.app.service.employee.EmployeeService <|.. org.example.app.service.employee.EmployeeServiceImpl
+org.example.app.repository.BaseRepository <|-- org.example.app.repository.employee.EmployeeRepository
+org.example.app.service.BaseService <|-- org.example.app.service.employee.EmployeeService
+org.example.app.repository.employee.EmployeeRepository <|.. org.example.app.repository.employee.EmployeeRepositoryImpl
+@enduml

@@ -1,17 +1,16 @@
 
-REST API User
+REST API Employee
 ---------------------
 
 Postman для тесту REST API
 https://www.postman.com/
 
-Для здійснення кожного запиту, натискаємо Send .
+Для здійснення кожного запиту, натискаємо Send.
 Якщо REST-запит має тіло, необхідно налаштування
 в Postman: Body > raw > JSON.
 
 
 (1) Отримання даних
-
 GET
 http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/employees
 
@@ -19,7 +18,6 @@ http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/employees
 
 
 (2) Створення даних
-
 POST
 http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/employees
 
@@ -63,15 +61,12 @@ http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/employees
 
 Перевіряємо через MySQL Workbench.
 
-
 (3) Отримання всіх даних
-
 GET
 http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/employees
 
 
 (4) Отримання даних за id
-
 За існуючим id
 GET
 http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/employees/4
@@ -82,7 +77,6 @@ http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/employees/9
 
 
 (5) Оновлення даних за id
-
 PUT
 http://localhost:8080/Your-Project-Name-1.0-SNAPSHOT/api/v1/employees/2
 
